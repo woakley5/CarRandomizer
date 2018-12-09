@@ -49,9 +49,11 @@ class AddDriverViewController: NSViewController {
 }
 
 extension AddDriverViewController: NSTextFieldDelegate {
-    func controlTextDidEndEditing(_ obj: Notification) {
+    
+    func controlTextDidChange(_ obj: Notification) {
         if (seatsField.integerValue != 0) {
             seatsStepper.integerValue = seatsField.integerValue
         }
     }
+    
 }

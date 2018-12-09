@@ -50,6 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     static func randomize() {
         cars.shuffle()
         riders.shuffle()
+        tbdRiders.shuffle()
         
         var index = 0
         
