@@ -22,12 +22,34 @@ class ViewController: NSViewController {
 
         ridersTable.delegate = self
         ridersTable.dataSource = self
+        
+        driversTable.doubleAction = #selector(removeDriver)
+        ridersTable.doubleAction = #selector(removeRider)
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
+    
+    @objc func removeDriver() {
+        let row = driversTable.clickedRow
+        let driver = AppDelegate.cars[row]
+        AppDelegate.cars.remove(at: row)
+        
+        let new = AppDelegate.riders.filter { $0.driver != driver }
+        AppDelegate.riders = new
+        AppDelegate.reloadSetupTables()
+    }
+    
+    @objc func removeRider() {
+        let row = ridersTable.clickedRow
+        let rider = AppDelegate.riders[row]
+        AppDelegate.riders.remove(at: row)
+        
+        for d in AppDelegate.cars {
+            if d.requiredPassengers.contains(rider) {
+                let new = d.requiredPassengers.filter { $0 != rider }
+                d.requiredPassengers = new
+            }
         }
+        
+        AppDelegate.reloadSetupTables()
     }
     
     func refreshRidersTable() {
@@ -131,7 +153,6 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
             return 0
         }
     }
-    
 
 }
 

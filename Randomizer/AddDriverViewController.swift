@@ -17,15 +17,30 @@ class AddDriverViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        seatsStepper.minValue = 1
+        seatsStepper.maxValue = 100
+        seatsStepper.autorepeat = true
+        seatsField.delegate = self
     }
     
     @IBAction func clickedCancel(_ sender: Any) {
         self.view.window!.performClose(nil)
     }
     
+    @IBAction func clickedStepper(_ sender: Any) {
+        seatsField.stringValue = String(seatsStepper.integerValue)
+    }
+    
     @IBAction func clickedDone(_ sender: Any) {
         let int = seatsField.integerValue
+        if int < 1 {
+            let alert = NSAlert()
+            alert.messageText = "Not enough seats!"
+            alert.informativeText = "Please make sure the car has at least 1 seat."
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+            return
+        }
         let driver = Driver(name: nameField.stringValue, seats: int, note: noteField.stringValue)
         AppDelegate.cars.append(driver)
         AppDelegate.reloadSetupTables()
@@ -33,3 +48,10 @@ class AddDriverViewController: NSViewController {
     }
 }
 
+extension AddDriverViewController: NSTextFieldDelegate {
+    func controlTextDidEndEditing(_ obj: Notification) {
+        if (seatsField.integerValue != 0) {
+            seatsStepper.integerValue = seatsField.integerValue
+        }
+    }
+}

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Driver {
+class Driver: Equatable {
     var name: String
     var note: String
     var seats: Int
@@ -23,6 +23,14 @@ class Driver {
     
     func addRequiredRider(rider: Rider) {
         requiredPassengers.append(rider)
+    }
+    
+    static func == (lhs: Driver, rhs: Driver) -> Bool {
+        return lhs.name == rhs.name &&
+            lhs.note == rhs.note &&
+            lhs.seats == rhs.seats &&
+            lhs.requiredPassengers == rhs.requiredPassengers &&
+            lhs.finalPassengers == rhs.finalPassengers
     }
 }
 
