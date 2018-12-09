@@ -44,17 +44,34 @@ class ViewController: NSViewController {
     
     @IBAction func clickedRandomize(_ sender: Any) {
         var seats = 0
+        var overflow: [Driver] = []
         for c in AppDelegate.cars {
             seats += c.seats
+            if c.requiredPassengers.count > c.seats {
+                overflow.append(c)
+            }
         }
-        print("Seats:")
-        print(seats)
-        print("Count:")
-        print(AppDelegate.riders.count)
-        if seats < AppDelegate.riders.count || seats == 0 {
+        
+        if AppDelegate.riders.count == 0 {
+            let alert = NSAlert()
+            alert.messageText = "No riders!"
+            alert.informativeText = "Please add riders before randomizing."
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        } else if seats < AppDelegate.riders.count || seats == 0 {
             let alert = NSAlert()
             alert.messageText = "Too many riders!"
             alert.informativeText = "There are more riders than seats. Please add more drivers or remove riders."
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        } else if overflow.count > 0 {
+            let alert = NSAlert()
+            alert.messageText = "Too many passengers!"
+            var string = ""
+            for o in overflow {
+                string.append("> " + o.name + "\n")
+            }
+            alert.informativeText = "These cars have too many passengers:\n\n" + string + "\nPlease add more seats or edit required passengers."
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
@@ -92,6 +109,8 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
                 text = AppDelegate.cars[row].name
             } else if tableColumn == tableView.tableColumns[1] {
                 text = String(AppDelegate.cars[row].seats)
+            } else if tableColumn == tableView.tableColumns[2] {
+                text = AppDelegate.cars[row].note
             }
             
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {

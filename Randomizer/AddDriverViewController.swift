@@ -13,6 +13,7 @@ class AddDriverViewController: NSViewController {
     @IBOutlet weak var nameField: NSTextField!
     @IBOutlet weak var seatsField: NSTextField!
     @IBOutlet weak var seatsStepper: NSStepper!
+    @IBOutlet weak var noteField: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class AddDriverViewController: NSViewController {
     
     @IBAction func clickedDone(_ sender: Any) {
         let int = seatsField.integerValue
-        let driver = Driver(name: nameField.stringValue, seats: int)
+        let driver = Driver(name: nameField.stringValue, seats: int, note: noteField.stringValue)
         AppDelegate.cars.append(driver)
         AppDelegate.reloadSetupTables()
         self.view.window!.performClose(nil)

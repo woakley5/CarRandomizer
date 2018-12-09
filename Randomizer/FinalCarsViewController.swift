@@ -12,6 +12,7 @@ import Quartz
 class FinalCarsViewController: NSViewController {
     
     @IBOutlet weak var carsTableView: NSTableView!
+    @IBOutlet weak var scrollView: NSScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,11 @@ class FinalCarsViewController: NSViewController {
         
         for (i, x) in AppDelegate.cars.enumerated() {
             let col = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "\(i)"))
-            col.title = x.name
+            if (x.note != "") {
+                col.title = x.name  + "'s car. (" + x.note + ")"
+            } else {
+                col.title = x.name  + "'s car."
+            }
             col.width = view.frame.width / CGFloat(AppDelegate.cars.count)
             carsTableView.addTableColumn(col)
         }
@@ -39,7 +44,7 @@ class FinalCarsViewController: NSViewController {
     }
     
     @IBAction func clickedExport(_ sender: Any) {
-        let pdfData = view.dataWithPDF(inside: carsTableView.bounds)
+        let pdfData = view.dataWithPDF(inside: scrollView.frame)
         let savePanel = NSSavePanel()
         savePanel.title = "Save PDF"
         savePanel.allowedFileTypes = ["pdf"]
