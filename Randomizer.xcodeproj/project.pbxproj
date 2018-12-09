@@ -11,6 +11,11 @@
 		6C68C14521BB26D100B32A82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C68C14421BB26D100B32A82 /* ViewController.swift */; };
 		6C68C14721BB26D200B32A82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C68C14621BB26D200B32A82 /* Assets.xcassets */; };
 		6C68C14A21BB26D200B32A82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C68C14821BB26D200B32A82 /* Main.storyboard */; };
+		6C68C15521BB2EDB00B32A82 /* AddRiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C68C15421BB2EDB00B32A82 /* AddRiderViewController.swift */; };
+		6C68C15821BB2F7B00B32A82 /* AddDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C68C15621BB2F7B00B32A82 /* AddDriverViewController.swift */; };
+		6C68C15B21BB30E100B32A82 /* Rider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C68C15A21BB30E100B32A82 /* Rider.swift */; };
+		6C68C15D21BB30E900B32A82 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C68C15C21BB30E900B32A82 /* Driver.swift */; };
+		6CFBC0D521BC965500F7708A /* FinalCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBC0D321BC965500F7708A /* FinalCarsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +26,11 @@
 		6C68C14921BB26D200B32A82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6C68C14B21BB26D200B32A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C68C14C21BB26D200B32A82 /* Randomizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Randomizer.entitlements; sourceTree = "<group>"; };
+		6C68C15421BB2EDB00B32A82 /* AddRiderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRiderViewController.swift; sourceTree = "<group>"; };
+		6C68C15621BB2F7B00B32A82 /* AddDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDriverViewController.swift; sourceTree = "<group>"; };
+		6C68C15A21BB30E100B32A82 /* Rider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rider.swift; sourceTree = "<group>"; };
+		6C68C15C21BB30E900B32A82 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
+		6CFBC0D321BC965500F7708A /* FinalCarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalCarsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,14 +63,35 @@
 		6C68C14121BB26D100B32A82 /* Randomizer */ = {
 			isa = PBXGroup;
 			children = (
+				6C68C15321BB2EBF00B32A82 /* Windows */,
+				6C68C15221BB2EB100B32A82 /* Models */,
 				6C68C14221BB26D100B32A82 /* AppDelegate.swift */,
-				6C68C14421BB26D100B32A82 /* ViewController.swift */,
 				6C68C14621BB26D200B32A82 /* Assets.xcassets */,
 				6C68C14821BB26D200B32A82 /* Main.storyboard */,
 				6C68C14B21BB26D200B32A82 /* Info.plist */,
 				6C68C14C21BB26D200B32A82 /* Randomizer.entitlements */,
 			);
 			path = Randomizer;
+			sourceTree = "<group>";
+		};
+		6C68C15221BB2EB100B32A82 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6C68C15A21BB30E100B32A82 /* Rider.swift */,
+				6C68C15C21BB30E900B32A82 /* Driver.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6C68C15321BB2EBF00B32A82 /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				6C68C14421BB26D100B32A82 /* ViewController.swift */,
+				6C68C15421BB2EDB00B32A82 /* AddRiderViewController.swift */,
+				6C68C15621BB2F7B00B32A82 /* AddDriverViewController.swift */,
+				6CFBC0D321BC965500F7708A /* FinalCarsViewController.swift */,
+			);
+			name = Windows;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +126,11 @@
 				TargetAttributes = {
 					6C68C13E21BB26D100B32A82 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -133,8 +169,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C68C15821BB2F7B00B32A82 /* AddDriverViewController.swift in Sources */,
 				6C68C14521BB26D100B32A82 /* ViewController.swift in Sources */,
+				6C68C15B21BB30E100B32A82 /* Rider.swift in Sources */,
+				6C68C15D21BB30E900B32A82 /* Driver.swift in Sources */,
 				6C68C14321BB26D100B32A82 /* AppDelegate.swift in Sources */,
+				6C68C15521BB2EDB00B32A82 /* AddRiderViewController.swift in Sources */,
+				6CFBC0D521BC965500F7708A /* FinalCarsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
